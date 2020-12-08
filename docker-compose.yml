@@ -1,0 +1,25 @@
+version: "3"
+services:
+  db:
+    image: postgres
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+
+  redis:
+    image: redis:latest
+    
+  web:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    working_dir: /code
+    command: sh /code/entrypoint.sh 
+    volumes:
+      - .:/code
+    ports:
+      - 9000:9000
+
+volumes:
+    db_data:

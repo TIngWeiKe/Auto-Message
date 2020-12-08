@@ -2,10 +2,12 @@ import logo from './logo.svg';
 import './App.css';
 
 function App() {
+  console.log(process.env)
   return (
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
+        <h1>{process.env.REACT_APP_API_URL}</h1>
         <p>
           Edit <code>src/App.js</code> and save to reload.
         </p>

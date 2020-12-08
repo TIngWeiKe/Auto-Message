@@ -3,4 +3,3 @@ djangorestframework
 django-cors-headers
 djangorestframework-simplejwt
 psycopg2-binary
-django-webpack-loader

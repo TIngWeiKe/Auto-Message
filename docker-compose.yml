@@ -1,5 +1,27 @@
 version: "3"
 services:
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - db_data:/usr/src/django/data
+      - ./:/usr/src/django
+    ports:
+      - 9000:9000
+
+  frontend:
+    build:
+      context: .
+      dockerfile: ./frontend/Dockerfile
+    environment:
+      - REACT_APP_DEBUG=TRUE
+    volumes:
+      - ./frontend:/usr/src/react
+      - /usr/src/react/node_modules
+    ports:
+      - 3000:3000
+
   db:
     image: postgres
     environment:
@@ -9,17 +31,6 @@ services:
 
   redis:
     image: redis:latest
-    
-  web:
-    build:
-      context: .
-      dockerfile: ./Dockerfile
-    working_dir: /code
-    command: sh /code/entrypoint.sh 
-    volumes:
-      - .:/code
-    ports:
-      - 9000:9000
 
 volumes:
     db_data:

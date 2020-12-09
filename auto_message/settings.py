@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'accounts'
 ]
 
 MIDDLEWARE = [
@@ -133,3 +134,14 @@ ADMIN_NOTIFICATION_EMAIL = json.loads(
     CONFIG["general"]["ADMIN_NOTIFICATION_EMAIL"])
 
 STATIC_URL = "/static/"
+
+
+# DRF Authentication
+REST_FRAMEWORK = {
+    "DEFAULT_PERMISSION_CLASSES": ("rest_framework.permissions.IsAuthenticated",),
+    "DEFAULT_AUTHENTICATION_CLASSES": (
+        "rest_framework.authentication.SessionAuthentication",
+        "rest_framework.authentication.BasicAuthentication",
+    ),
+    'DATETIME_FORMAT': "%Y-%m-%dT%H:%M:%S.%f%z",
+}
